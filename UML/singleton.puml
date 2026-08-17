@@ -1,0 +1,23 @@
+@startuml Singleton
+
+title Singleton Pattern - Registration Manager
+
+class RegistrationManager {
+    - _instance : RegistrationManager
+    - registration_count : int
+    - registrations : list
+
+    + __new__() : RegistrationManager
+    + register_course(student_name, course) : str
+    + get_total_registrations() : int
+}
+
+RegistrationManager --> RegistrationManager : creates/returns\nsingle instance
+
+note right of RegistrationManager
+    Ensures only one
+    RegistrationManager
+    instance exists.
+end note
+
+@enduml

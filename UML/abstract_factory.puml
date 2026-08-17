@@ -1,0 +1,59 @@
+@startuml AbstractFactory
+
+title Abstract Factory Pattern - Registration System
+
+abstract class Enrollment {
+    + enroll(student_name, course) : str
+}
+
+class RegularEnrollment {
+    + enroll(student_name, course) : str
+}
+
+class OnlineEnrollment {
+    + enroll(student_name, course) : str
+}
+
+abstract class FeeCalculator {
+    + calculate_fee(base_fee) : float
+}
+
+class RegularFeeCalculator {
+    + calculate_fee(base_fee) : float
+}
+
+class OnlineFeeCalculator {
+    + calculate_fee(base_fee) : float
+}
+
+abstract class RegistrationFactory {
+    + create_enrollment() : Enrollment
+    + create_fee_calculator() : FeeCalculator
+}
+
+class RegularRegistrationFactory {
+    + create_enrollment() : RegularEnrollment
+    + create_fee_calculator() : RegularFeeCalculator
+}
+
+class OnlineRegistrationFactory {
+    + create_enrollment() : OnlineEnrollment
+    + create_fee_calculator() : OnlineFeeCalculator
+}
+
+Enrollment <|-- RegularEnrollment
+Enrollment <|-- OnlineEnrollment
+
+FeeCalculator <|-- RegularFeeCalculator
+FeeCalculator <|-- OnlineFeeCalculator
+
+RegistrationFactory <|-- RegularRegistrationFactory
+RegistrationFactory <|-- OnlineRegistrationFactory
+
+RegularRegistrationFactory ..> RegularEnrollment : creates
+RegularRegistrationFactory ..> RegularFeeCalculator : creates
+
+OnlineRegistrationFactory ..> OnlineEnrollment : creates
+OnlineRegistrationFactory ..> OnlineFeeCalculator : creates
+
+@enduml

@@ -1,0 +1,42 @@
+@startuml FactoryMethod
+
+title Factory Method Pattern - Course Creation
+
+abstract class Course {
+    - code : str
+    - name : str
+    - department : str
+
+    + get_details() : str
+}
+
+class CSECourse {
+    + get_details() : str
+}
+
+class EEECourse {
+    + get_details() : str
+}
+
+abstract class CourseCreator {
+    + create_course() : Course
+}
+
+class CSECourseCreator {
+    + create_course() : CSECourse
+}
+
+class EEECourseCreator {
+    + create_course() : EEECourse
+}
+
+Course <|-- CSECourse
+Course <|-- EEECourse
+
+CourseCreator <|-- CSECourseCreator
+CourseCreator <|-- EEECourseCreator
+
+CSECourseCreator ..> CSECourse : creates
+EEECourseCreator ..> EEECourse : creates
+
+@enduml
